@@ -20,7 +20,9 @@
    box-sizing: border-box;
    color: #000 !important;
  }
-
+#modal {
+  z-index: 3;
+}
  #modal, .app-header {
    background-color: rgba(255, 255, 255, 1);
    position: absolute;

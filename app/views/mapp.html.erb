@@ -28,17 +28,15 @@
                 <!-- zoom-to-include-markers="true"
                 minZoom=2  -->
           <!-- <marker ng-repeat="trip in trips.trips" position="{{trip.latitude}},{{trip.longitude}}" animation="DROP" title="{{trip.name}}" on-click="show()"></marker> -->
-        </ng-map>
-      </div>
+
 
     <!-- John: Angular code -->
     <!-- <header ng-controller="HeaderController as header">
     <h1>Welcome, {{header.current_user.username}}!</h1>
     </header> -->
-    <main ng-controller="TripsController as trips" id="temp-overflow">
 
     <div id="modal">
-        <main ng-controller="TripsController as trips" id="temp-overflow">
+      <main ng-controller="TripsController as trips" id="temp-overflow">
           <div id="card">
             <div class="back">
               <!-- List of All the Users Trips -->
@@ -136,6 +134,8 @@
         })
       });
     </script>
+  </ng-map>
+</div>
     <script src="/lib/js/jquery.timelinr-0.9.54.js"></script>
   </body>
 </html>
