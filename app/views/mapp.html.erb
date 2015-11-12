@@ -23,8 +23,18 @@
                 map-type-control="FALSE"
                 styles=[{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]>
               <marker position="-40, 70" on-click="show()"></marker>
+                <!-- zoom-to-include-markers="true"
+                minZoom=2  -->
+          <!-- <marker ng-repeat="trip in trips.trips" position="{{trip.latitude}},{{trip.longitude}}" animation="DROP" title="{{trip.name}}" on-click="show()"></marker> -->
+
+
+    <!-- John: Angular code -->
+    <!-- <header ng-controller="HeaderController as header">
+    <h1>Welcome, {{header.current_user.username}}!</h1>
+    </header> -->
+
     <div id="modal">
-        <main ng-controller="TripsController as trips" id="temp-overflow">
+      <main ng-controller="TripsController as trips" id="temp-overflow">
           <div id="card">
             <div class="back">
               <!-- List of All the Users Trips -->
@@ -40,6 +50,20 @@
                   Notes: {{trip.notes}}
                   Latitude: {{trip.latitude}}
                   Longitude: {{trip.longitude}}
+                  <% if #{{trip.user.username}} === #{{trips.current_user.username}} %>
+                  <form ng-submit="trips.deleteTrip(trip)">
+                    <input type="submit" value="Delete Trip">
+                  </form>
+                  <br/>
+                  <form ng-submit="trips.editTrip(trip)">
+                    <input type="text" ng-model="trips.editTripTitle" placeholder="Title" value="{{trip.title}}"/>
+                    <input type="text" ng-model="trips.editTripDescription" placeholder="Description" value="{{trip.description}}"/>
+                    <input type="date" ng-model="trips.editTripStartDate" placeholder="Start Date"/>
+                    <input type="date" ng-model="trips.editTripEndDate" placeholder="End Date"/>
+                    <input type="text" ng-model="trips.editTripNotes" placeholder="Notes" value="{{trip.notes}}"/>
+                    <input type="submit" value="Edit your Trip"/>
+                  </form>
+                  <% end %>
                 <div ng-controller="CommentsController as commentsCtrl">
                   <h3>Comments:</h3>
                     <ul>
@@ -139,6 +163,14 @@
     });
     </script>
 
+    <script src="/lib/js/jquery.js"></script>
+    <script src="/lib/js/jquery.flip.js"></script>
+    <script>
+    $(function($) {
+      $("#card").flip();
+    });
+    </script>
+
     <script>
       $(function(){
         $().timelinr({
@@ -147,8 +179,8 @@
         })
       });
     </script>
-    </ng-map>
-  </div>
+  </ng-map>
+</div>
     <script src="/lib/js/jquery.timelinr-0.9.54.js"></script>
   </body>
 </html>
