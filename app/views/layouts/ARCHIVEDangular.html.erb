@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" ng-app="TravelApp">
+  <head>
+    <title>TravelApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script> -->
+  </head>
+  <body>
+  <!-- below are for flash messages -->
+    <% if flash[:message] %>
+      <div class="flash">
+        <%= flash[:message] %>
+      </div>
+    <% end %>
+
+    <!-- <div ng-controller="map as MapsController"> -->
+    <%= yield %>
+    <!-- </div> -->
+
+    <%= javascript_include_tag 'angular', 'data-turbolinks-track' => true %>
+    <button class="btn btn-1 btn-1e button" href="<%= new_trip_path %>">
+      Create New Trip
+    </button>
+    <div class="app-header">
+      <% if current_user %>
+      <h3> You are currently logged in as <%= current_user.username %> </h3>
+      <form action="<%= session_path %>" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Log Out">
+      </form>
+      <% end %>
+    </div>
+  </body>
+</html>
