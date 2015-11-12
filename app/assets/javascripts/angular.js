@@ -12,7 +12,6 @@ app.controller('mapController', function ($scope) {
             map = evtMap;
             map.setOptions({minZoom: 2})
           });
-    // $scope.$broadcast('placeChangedFunctionSent', data)
 
 
   $scope.show = function() {
