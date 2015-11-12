@@ -10,7 +10,7 @@ app.controller('mapController', function ($scope) {
   var controller = this;
   $scope.$on('mapInitialized', function(evt, evtMap) {
             map = evtMap;
-            map.setOptions({minZoom: 2})
+            map.setOptions({minZoom: 3})
           });
   $scope.placeChanged = function () {
     $scope.place = this.getPlace();
