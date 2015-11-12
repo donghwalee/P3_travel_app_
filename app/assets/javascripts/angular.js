@@ -6,47 +6,36 @@ var markers = [];
 var destName;
 var destLat;
 var destLng;
-app.controller('mapController', function ($scope) {
+app.controller('mapController', ['$scope', function ($scope) {
   var controller = this;
   $scope.$on('mapInitialized', function(evt, evtMap) {
             map = evtMap;
-            map.setOptions({minZoom: 2})
+            map.setOptions({minZoom: 3})
           });
-
 
   $scope.show = function() {
     if (this.getAnimation() != null) {
       this.setAnimation(null);
     } else {
       this.setAnimation(google.maps.Animation.BOUNCE);
-      console.log(this);
+      // console.log(this);
       var dest = this.position
-      $scope.map.panTo({lat: dest.lat() + 3,
-                        lng: dest.lat()})
+      console.log(this);
+      $scope.map.panTo({lat: dest.lat(), lng: dest.lng() + 3 })
+     $scope.map.setZoom(4)
     }
   }
-
-})
-
-//Header Controller
-app.controller('HeaderController', ['$http', function($http) {
-  var controller = this;
-  //Get current user from route
-  $http.get('/session').success(function(data) {
-    //setting curent user to data.current user because data comes nested in current user
-    controller.current_user = data.current_user;
-    console.log(controller.current_user);
+  $scope.$on("TripsReceived", function(event, data) {
+    $scope.trips = data.trips;
+    console.log($scope.trips);
   });
 }]);
+
 //Trips Controller
 app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   var controller = this;
-  $scope.$on('placeChangedFunctionSent', function(data, args) {
-    console.log(data);
-    console.log(args);
-  })
   //trip types for select in html
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";
@@ -54,19 +43,10 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   $scope.placeChanged = function () {
     $scope.place = this.getPlace();
     var dest = $scope.place.geometry.location
-    new google.maps.Marker({
-        map: $scope.map,
-        position: dest,
-        animation: "DROP"
-      }
-    );
     destLat = $scope.place.geometry.location.lat();
     destLng = $scope.place.geometry.location.lng();
     destName = $scope.place.name;
-    console.log(destLat);
-    console.log(destLng);
-    console.log($scope.place.name);
-    // console.log($scope.markers);
+
     locations.push({lat: dest.lat(), lng: dest.lng()})
 
     $scope.map.panTo({lat: dest.lat(), lng: (dest.lng() + 3)})
@@ -81,37 +61,33 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   this.getTrips = function() {
     // get trips for current User
     $http.get('/trips').success(function(data) {
+      $scope.$emit('TripsReceived', data)
       //add trips to controller, data comes back with user
       controller.username = data.username;
       console.log(data);
       controller.current_user_trips = data.trips;
       controller.trips = [];
-      console.log($scope.$parent);
 
-
-      angular.forEach(data.trips, function(value) {
+        angular.forEach(data.trips, function(value) {
         controller.trips.push({lat: value.latitude, lng: value.longitude})
-      });
+      })
 
-      console.log($scope);
-      console.log(controller.current_user_trips);
-    });
-  }
+  });
+}
   this.getTrips();
 
-  // create a Trip
-  this.createTrip = function() {
+    // create a Trip
+    this.createTrip = function() {
 
-    controller.current_user_trips.push({
-      title: this.newTripTitle + "...loading",
-      destination: this.newTripDestination + "...loading",
-      description: this.newTripDescription + "...loading",
-      start_date: this.newTripStartDate + "...loading",
-      end_date: this.newTripEndDate + "...loading",
-      trip_type: this.newTripTripType + "...loading",
-      notes: this.newTripNotes + "...loading"
-    });
-
+      controller.current_user_trips.push({
+        title: this.newTripTitle + "...loading",
+        destination: this.newTripDestination + "...loading",
+        description: this.newTripDescription + "...loading",
+        start_date: this.newTripStartDate + "...loading",
+        end_date: this.newTripEndDate + "...loading",
+        trip_type: this.newTripTripType + "...loading",
+        notes: this.newTripNotes + "...loading"
+      });
     $http.post('/trips', {
       // authenticity_token: authenticity_token,
       trip: {
@@ -177,7 +153,6 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   }
   this.getTrips();
 }]);
-
 
 app.controller('CommentsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
