@@ -7,10 +7,10 @@ var destName;
 var destLat;
 var destLng;
 app.controller('mapController', function ($scope) {
+  var controller = this;
   $scope.$on('mapInitialized', function(evt, evtMap) {
             map = evtMap;
             map.setOptions({minZoom: 3})
-            // map.fitBounds({-90, -180}, {90, 180})
           });
 
   $scope.placeChanged = function () {
@@ -25,9 +25,9 @@ app.controller('mapController', function ($scope) {
     destLat = $scope.place.geometry.location.lat();
     destLng = $scope.place.geometry.location.lng();
     destName = $scope.place.name;
-    console.log(destLat);
-    console.log(destLng);
-    console.log($scope.place.name);
+    // console.log(destLat);
+    // console.log(destLng);
+    // console.log($scope.place.name);
     // console.log($scope.markers);
     locations.push({lat: dest.lat(), lng: dest.lng()})
 
@@ -40,13 +40,17 @@ app.controller('mapController', function ($scope) {
       this.setAnimation(null);
     } else {
       this.setAnimation(google.maps.Animation.BOUNCE);
-      console.log(this);
+      // console.log(this);
       var dest = this.position
       $scope.map.panTo({lat: dest.lat() + 3,
                         lng: dest.lat()})
     }
   }
-console.log($scope);
+  // console.log("Map scope");
+  $scope.$on("TripsReceived", function(event, data){
+    $scope.trips = data;
+  });
+// console.log($scope);
 // console.log($scope.$child);
   // $scope.userTrips = $scope.$child.trips.trips
 })
@@ -58,7 +62,6 @@ app.controller('HeaderController', ['$http', function($http) {
   $http.get('/session').success(function(data) {
     //setting curent user to data.current user because data comes nested in current user
     controller.current_user = data.current_user;
-    console.log(controller.current_user);
   });
 }]);
  var tripLocations = []
@@ -74,6 +77,7 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   this.getTrips = function() {
     // get trips for current User
     $http.get('/trips').success(function(data) {
+      $scope.$emit('TripsReceived', data)
       //add trips to controller, data comes back with user
       controller.current_user_trips = data.trips;
       controller.trips = [];
@@ -81,8 +85,8 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
       angular.forEach(data.trips, function(value) {
         controller.trips.push({lat: value.latitude, lng: value.longitude})
       });
-
-      console.log($scope);
+      // console.log("trip scope");
+      // console.log($scope);
     });
   }
   this.getTrips();
