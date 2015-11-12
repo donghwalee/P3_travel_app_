@@ -68,10 +68,18 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";
 
+  $http.get('/session').success(function(data) {
+    //setting curent user to data.current user because data comes nested in current user
+    controller.current_user = data.current_user;
+    console.log(controller.current_user);
+  });
+
   this.getTrips = function() {
     // get trips for current User
     $http.get('/trips').success(function(data) {
       //add trips to controller, data comes back with user
+      controller.username = data.username;
+      console.log(data);
       controller.current_user_trips = data.trips;
       controller.trips = [];
 
@@ -123,6 +131,45 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
       console.log(destLng);
     });
   }
+
+  this.editTrip = function(trip) {
+    $http.patch('/trips/'+trip.id, {
+      authenticity_token: authenticity_token,
+      trip: {
+        title: this.editTripTitle,
+        destination: trip.destination,
+        description: this.editTripDescription,
+        longitude: trip.longitude,
+        latitude: trip.latitude,
+        start_date: this.editTripStartDate,
+        end_date: this.editTripEndDate,
+        trip_type: trip.trip_type,
+        notes: this.editTripNotes
+      }
+    }).success(function(data) {
+      controller.getTrips();
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    }).error(function(data, status) {
+      console.log(data);
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    });
+  }
+
+  this.deleteTrip = function(trip) {
+    $http.delete('/trips/'+trip.id, {
+      authenticity_token: authenticity_token
+    }).success(function(data) {
+      controller.getTrips();
+    }).error(function(data, status) {
+      controller.getTrips();
+      console.log(authenticity_token);
+    });
+  }
+  this.getTrips();
 }]);
 
 

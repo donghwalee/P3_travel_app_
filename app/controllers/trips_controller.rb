@@ -1,6 +1,8 @@
 class TripsController < ApplicationController
+
   include TripsHelper
   before_action :require_current_user
+  skip_before_action :verify_authenticity_token
 
   def new
     @trip = Trip.new
@@ -33,9 +35,17 @@ class TripsController < ApplicationController
   def update
     # --- below is from Monday morning change
     @trip = Trip.find(params[:id])
-    @trip.update(trip_params)
+
+    if @trip.update(trip_params)
     flash[:message] = "Trip '#{@trip.title}' Updated!"
-    redirect_to trip_path(@trip)
+      render json: @trip
+    else
+      render json: {
+      error: {
+        message: @trip.errors.full_messages.to_sentence
+      }
+    }
+    end
     # --- end
   end
 
@@ -58,8 +68,12 @@ class TripsController < ApplicationController
     # --- below is from Monday morning change
     @trip = Trip.find(params[:id])
     @trip.destroy
-    redirect_to trips_path
+    # redirect_to trips_path
     # --- end
+    respond_to do |format|
+      format.html { redirect_to mapp_path}
+      format.json { head :no_content}
+    end
   end
 
   private
