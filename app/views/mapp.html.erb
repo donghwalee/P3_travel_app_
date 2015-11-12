@@ -16,13 +16,12 @@
       <div ng-controller="mapController">
         <ng-map center="0,0"
                 zoom=2
-                minZoom=2
                 default-style="false"
                 zoom-control="true"
                 zoom-control-options="{position: 'LEFT_CENTER'}"
                 map-type-control="FALSE"
                 styles=[{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]>
-              <marker ng-repeat="trip in trips" position="{{trip.latitude}}, {{trip.longitude}}" animation="DROP" on-click="show()"></marker>
+              <marker ng-repeat="trip in trips" position="{{trip.latitude}}, {{trip.longitude}}" trip-id="{{trip.trip_id}}" animation="DROP" on-click="show()"></marker>
 ​
     <div id="modal">
         <main ng-controller="TripsController as trips" id="temp-overflow">

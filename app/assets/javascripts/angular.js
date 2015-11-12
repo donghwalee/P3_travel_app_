@@ -20,7 +20,7 @@ app.controller('mapController', ['$scope', function ($scope) {
       this.setAnimation(google.maps.Animation.BOUNCE);
       // console.log(this);
       var dest = this.position
-      console.log(this.position);
+      console.log(this);
       $scope.map.panTo({lat: dest.lat(), lng: dest.lng() + 3 })
      $scope.map.setZoom(4)
     }
@@ -43,11 +43,6 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   $scope.placeChanged = function () {
     $scope.place = this.getPlace();
     var dest = $scope.place.geometry.location
-    new google.maps.Marker({
-        map: $scope.map,
-        position: dest,
-      }
-    );
     destLat = $scope.place.geometry.location.lat();
     destLng = $scope.place.geometry.location.lng();
     destName = $scope.place.name;
