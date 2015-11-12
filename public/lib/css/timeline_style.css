@@ -91,6 +91,7 @@ h1,h2,h4,h5,h6 {
 			width: 800px ;
 			height: 35px;
 			overflow: hidden;
+			/*border: blue solid 1px;*/
 		}
 			#issues li.ng-scope {
 				width: 800px ;
@@ -127,7 +128,6 @@ h1,h2,h4,h5,h6 {
 					color: black;
 					font-size: 1em;
 					margin: 7px 0;
-					text-align: center;
 				}
 				#issues li.ng-scope p {
 					font-size: 14px;
@@ -139,8 +139,9 @@ h1,h2,h4,h5,h6 {
 		#next,
 		#prev {
 			position: absolute;
-			font-size: 70px;
 			top: 0;
+			font-size: 70px;
+			top: 0px;
 			width: 22px;
 			height: 75px;
 			background-position: 0 0;
