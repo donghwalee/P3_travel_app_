@@ -44,16 +44,11 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   var controller = this;
-  $scope.$on('placeChangedFunctionSent', function(data, args) {
-    console.log(data);
-    console.log(args);
-  })
+
   //trip types for select in html
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";
 
-<<<<<<< HEAD
-=======
   $scope.placeChanged = function () {
     $scope.place = this.getPlace();
     var dest = $scope.place.geometry.location
@@ -81,11 +76,12 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
     controller.current_user = data.current_user;
     console.log(controller.current_user);
   });
->>>>>>> 4ed8090e10ca5e0575a6225c9e4108cfa5a87ad9
   this.getTrips = function() {
     // get trips for current User
     $http.get('/trips').success(function(data) {
       //add trips to controller, data comes back with user
+      controller.username = data.username;
+      console.log(data);
       controller.current_user_trips = data.trips;
       controller.trips = [];
       console.log($scope.$parent);
@@ -139,6 +135,45 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
       console.log(destLng);
     });
   }
+
+  this.editTrip = function(trip) {
+    $http.patch('/trips/'+trip.id, {
+      authenticity_token: authenticity_token,
+      trip: {
+        title: this.editTripTitle,
+        destination: trip.destination,
+        description: this.editTripDescription,
+        longitude: trip.longitude,
+        latitude: trip.latitude,
+        start_date: this.editTripStartDate,
+        end_date: this.editTripEndDate,
+        trip_type: trip.trip_type,
+        notes: this.editTripNotes
+      }
+    }).success(function(data) {
+      controller.getTrips();
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    }).error(function(data, status) {
+      console.log(data);
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    });
+  }
+
+  this.deleteTrip = function(trip) {
+    $http.delete('/trips/'+trip.id, {
+      authenticity_token: authenticity_token
+    }).success(function(data) {
+      controller.getTrips();
+    }).error(function(data, status) {
+      controller.getTrips();
+      console.log(authenticity_token);
+    });
+  }
+  this.getTrips();
 }]);
 
 
