@@ -102,33 +102,71 @@ app.controller('mapController', ['$scope', function ($scope) {
         trip_type: this.newTripTripType + "...loading",
         notes: this.newTripNotes + "...loading"
       });
+    $http.post('/trips', {
+      authenticity_token: authenticity_token,
+      trip: {
+          title: this.newTripTitle,
+          destination: destName,
+          description: this.newTripDescription,
+          longitude: destLng,
+          latitude: destLat,
+          start_date: this.newTripStartDate,
+          end_date: this.newTripEndDate,
+          trip_type: this.newTripTripType,
+          notes: this.newTripNotes
+      }
+    }).success(function(data){
+      controller.current_user_trips.pop();
+      controller.current_user_trips.push(data.trip);
+      controller.getTrips();
+      console.log(destLat);
+      console.log(destLng);
+    }).error(function(error){
+      console.log(error);
+      console.log(destLat);
+      console.log(destLng);
+    });
+  }
 
-      $http.post('/trips', {
-        authenticity_token: authenticity_token,
-        trip: {
-            title: this.newTripTitle,
-            destination: destName,
-            description: this.newTripDescription,
-            longitude: destLng,
-            latitude: destLat,
-            start_date: this.newTripStartDate,
-            end_date: this.newTripEndDate,
-            trip_type: this.newTripTripType,
-            notes: this.newTripNotes
-        }
-      }).success(function(data){
-        controller.current_user_trips.pop();
-        controller.current_user_trips.push(data.trip);
-        controller.getTrips();
-        console.log(destLat);
-        console.log(destLng);
-      }).error(function(error){
-        console.log(error);
-        console.log(destLat);
-        console.log(destLng);
-      });
-    }
-  }]);
+  this.editTrip = function(trip) {
+    $http.patch('/trips/'+trip.id, {
+      authenticity_token: authenticity_token,
+      trip: {
+        title: this.editTripTitle,
+        destination: trip.destination,
+        description: this.editTripDescription,
+        longitude: trip.longitude,
+        latitude: trip.latitude,
+        start_date: this.editTripStartDate,
+        end_date: this.editTripEndDate,
+        trip_type: trip.trip_type,
+        notes: this.editTripNotes
+      }
+    }).success(function(data) {
+      controller.getTrips();
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    }).error(function(data, status) {
+      console.log(data);
+      console.log(destLng);
+      console.log(destLat);
+      console.log(destName);
+    });
+  }
+
+  this.deleteTrip = function(trip) {
+    $http.delete('/trips/'+trip.id, {
+      authenticity_token: authenticity_token
+    }).success(function(data) {
+      controller.getTrips();
+    }).error(function(data, status) {
+      controller.getTrips();
+      console.log(authenticity_token);
+    });
+  }
+  this.getTrips();
+}]);
 
 app.controller('CommentsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)

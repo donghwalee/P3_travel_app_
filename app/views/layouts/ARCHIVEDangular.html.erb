@@ -13,7 +13,11 @@
         <%= flash[:message] %>
       </div>
     <% end %>
+
+    <!-- <div ng-controller="map as MapsController"> -->
     <%= yield %>
+    <!-- </div> -->
+
     <%= javascript_include_tag 'angular', 'data-turbolinks-track' => true %>
     <button class="btn btn-1 btn-1e button" href="<%= new_trip_path %>">
       Create New Trip
