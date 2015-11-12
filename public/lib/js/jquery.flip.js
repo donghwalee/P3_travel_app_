@@ -94,7 +94,7 @@
           var settings = $.extend({
             axis: "y",
             reverse: false,
-            trigger: "click",
+            trigger: "submit",
             speed: 500,
             forceHeight: true,
             forceWidth: false,
@@ -177,10 +177,10 @@
           //will temporarily use a short delay of 20 to mitigate this issue.
           }, 20);
 
-          if (settings.trigger.toLowerCase() == "click") {
-            $dom.on($.fn.tap ? "tap" : "click", function(event) {
+          if (settings.trigger.toLowerCase() == "submit") {
+            $dom.on($.fn.tap ? "tap" : "submit", function(event) {
               if (!event) {event = window.event;}
-              if ($dom.find($(event.target).closest('button, a, input[type="click"]')).length) {
+              if ($dom.find($(event.target).closest('button, a, input[type="submit"]')).length) {
                 return;
               }
 

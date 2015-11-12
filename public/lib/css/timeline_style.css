@@ -19,9 +19,11 @@ body {
 }
 	#dates a.ng-binding:hover,
 	a.selected {
-		color: salmon !important;
+		color: #ffc04c !important;
 	}
 
+<<<<<<< HEAD
+=======
 h1,h2,h4,h5,h6 {
 	text-align: center ;
 	color: darkgray ;
@@ -39,6 +41,7 @@ h1,h2,h4,h5,h6 {
 	margin-bottom: 20px ;
 }
 
+>>>>>>> a8cd2f78906f245994b68d2a03784adb1e5dd0be
 .timeline {
 	bottom: 0;
 	width: 74.5%;
@@ -61,9 +64,15 @@ h1,h2,h4,h5,h6 {
 	}
 
 		#dates {
+<<<<<<< HEAD
+			width: 74.5%;
+			height: 40px;
+			overflow: hidden;
+=======
 			width: 60%;
 			height: 40px ;
 			overflow: hidden ;
+>>>>>>> a8cd2f78906f245994b68d2a03784adb1e5dd0be
 			/*border: red solid 1px;*/
 		}
 		a.ng-binding {
@@ -91,7 +100,6 @@ h1,h2,h4,h5,h6 {
 			width: 800px ;
 			height: 35px;
 			overflow: hidden;
-			/*border: blue solid 1px;*/
 		}
 			#issues li.ng-scope {
 				width: 800px ;
@@ -128,6 +136,7 @@ h1,h2,h4,h5,h6 {
 					color: black;
 					font-size: 1em;
 					margin: 7px 0;
+					text-align: center;
 				}
 				#issues li.ng-scope p {
 					font-size: 14px;
@@ -139,9 +148,8 @@ h1,h2,h4,h5,h6 {
 		#next,
 		#prev {
 			position: absolute;
-			top: 0;
 			font-size: 70px;
-			top: 0px;
+			top: 0;
 			width: 22px;
 			height: 75px;
 			background-position: 0 0;
