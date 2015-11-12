@@ -19,11 +19,9 @@ body {
 }
 	#dates a.ng-binding:hover,
 	a.selected {
-		color: #ffc04c !important;
+		color: salmon !important;
 	}
 
-<<<<<<< HEAD
-=======
 h1,h2,h4,h5,h6 {
 	text-align: center ;
 	color: darkgray ;
@@ -41,7 +39,6 @@ h1,h2,h4,h5,h6 {
 	margin-bottom: 20px ;
 }
 
->>>>>>> a8cd2f78906f245994b68d2a03784adb1e5dd0be
 .timeline {
 	bottom: 0;
 	width: 74.5%;
@@ -64,15 +61,9 @@ h1,h2,h4,h5,h6 {
 	}
 
 		#dates {
-<<<<<<< HEAD
-			width: 74.5%;
-			height: 40px;
-			overflow: hidden;
-=======
 			width: 60%;
 			height: 40px ;
 			overflow: hidden ;
->>>>>>> a8cd2f78906f245994b68d2a03784adb1e5dd0be
 			/*border: red solid 1px;*/
 		}
 		a.ng-binding {

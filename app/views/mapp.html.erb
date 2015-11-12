@@ -11,8 +11,6 @@
     <%= stylesheet_link_tag 'mapp', media: 'all' %>
     <%= javascript_include_tag 'angular' %>
     <link rel="stylesheet" media="screen"  href="/lib/css/timeline_style.css" />
-​
-​
   </head>
   <body>
       <div ng-controller="mapController">
@@ -25,13 +23,6 @@
                 map-type-control="FALSE"
                 styles=[{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]>
               <marker position="-40, 70" on-click="show()"></marker>
-
-​
-    <!-- John: Angular code -->
-    <!-- <header ng-controller="HeaderController as header">
-    <h1>Welcome, {{header.current_user.username}}!</h1>
-    </header> -->
-    <main ng-controller="TripsController as trips" id="temp-overflow">
 ​
     <div id="modal">
         <main ng-controller="TripsController as trips" id="temp-overflow">
@@ -95,7 +86,6 @@
               </form>
             </div>
           </div>
-        </main>
     </div>
     <div class='timeline'>
       <div id="timeline">
