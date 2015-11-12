@@ -18,6 +18,7 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   color: #000 !important;
  }
 
  #modal, .app-header {
@@ -33,6 +34,9 @@
    right: 0;
    transform: translateY(-50%);
    overflow-y: hidden;
+   -webkit-box-shadow: -10px 0px 30px 0px rgba(0,0,0,0.75);
+   -moz-box-shadow: -10px 0px 30px 0px rgba(0,0,0,0.75);
+   box-shadow: -10px 0px 30px 0px rgba(0,0,0,0.75);
  }
 
  #modal input {
@@ -42,7 +46,7 @@
    margin-bottom: 20px;
    background-color: #fff;
    color: #ffc04c;
-   border: 1px dashed #ffc04c;
+   border: 1px solid #ffc04c;
 }
 
  .app-header {
@@ -53,7 +57,6 @@
    -moz-box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.75);
    box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.75);
  }
-
 
 .button {
   position: absolute;
@@ -122,4 +125,8 @@
 .btn-1e:hover:after {
 	height: 350px;
 	opacity: 1;
+}
+
+#card h2 {
+  margin: 5% 0 5% 0;
 }

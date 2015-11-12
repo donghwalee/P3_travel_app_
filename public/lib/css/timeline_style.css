@@ -19,25 +19,8 @@ body {
 }
 	#dates a:hover,
 	a.selected {
-		color: salmon !important;
+		color: #ffc04c !important;
 	}
-
-h1,h2,h4,h5,h6 {
-	text-align: center;
-	color: darkgray;
-	/*text-shadow: #000 1px 1px 2px;*/
-	margin-bottom: 5px;
-}
-	h1 {
-		font-size: 18px;
-	}
-	h2 {
-		font-size: 14px;
-	}
-.sociales {
-	text-align: center;
-	margin-bottom: 20px;
-}
 
 .timeline {
 	bottom: 0;
@@ -61,7 +44,7 @@ h1,h2,h4,h5,h6 {
 	}
 
 		#dates {
-			width: 60%;
+			width: 74.5%;
 			height: 40px;
 			overflow: hidden;
 			/*border: red solid 1px;*/
@@ -88,7 +71,6 @@ h1,h2,h4,h5,h6 {
 			width: 800px;
 			height: 35px;
 			overflow: hidden;
-			/*border: blue solid 1px;*/
 		}
 			#issues li {
 				width: 800px;
@@ -125,6 +107,7 @@ h1,h2,h4,h5,h6 {
 					color: black;
 					font-size: 1em;
 					margin: 7px 0;
+					text-align: center;
 				}
 				#issues li p {
 					font-size: 14px;
@@ -136,9 +119,8 @@ h1,h2,h4,h5,h6 {
 		#next,
 		#prev {
 			position: absolute;
-			top: 0;
 			font-size: 70px;
-			top: 0px;
+			top: 0;
 			width: 22px;
 			height: 75px;
 			background-position: 0 0;
