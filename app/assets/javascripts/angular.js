@@ -7,11 +7,12 @@ var destName;
 var destLat;
 var destLng;
 app.controller('mapController', function ($scope) {
-  var controller = this;
   $scope.$on('mapInitialized', function(evt, evtMap) {
             map = evtMap;
             map.setOptions({minZoom: 3})
+            // map.fitBounds({-90, -180}, {90, 180})
           });
+
   $scope.placeChanged = function () {
     $scope.place = this.getPlace();
     var dest = $scope.place.geometry.location
@@ -45,7 +46,9 @@ app.controller('mapController', function ($scope) {
                         lng: dest.lat()})
     }
   }
-
+console.log($scope);
+// console.log($scope.$child);
+  // $scope.userTrips = $scope.$child.trips.trips
 })
 
 //Header Controller
@@ -58,12 +61,12 @@ app.controller('HeaderController', ['$http', function($http) {
     console.log(controller.current_user);
   });
 }]);
+ var tripLocations = []
 //Trips Controller
 app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   var controller = this;
-
   //trip types for select in html
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";
@@ -80,7 +83,6 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
       });
 
       console.log($scope);
-      console.log(controller.current_user_trips);
     });
   }
   this.getTrips();
@@ -124,6 +126,7 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
     });
   }
 }]);
+
 
 
 app.controller('CommentsController', ['$http', '$scope', function($http, $scope) {

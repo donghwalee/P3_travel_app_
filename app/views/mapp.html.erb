@@ -14,8 +14,8 @@
     <
   </head>
   <body>
-      <div ng-controller="mapController">
-        <ng-map center="10,0"
+      <div id="map" ng-controller="mapController">
+        <ng-map id="map" center="10,0"
                 zoom=3
                 default-style="false"
                 zoom-control="true"
@@ -27,8 +27,6 @@
                 <!-- zoom-to-include-markers="true"
                 minZoom=2  -->
           <!-- <marker ng-repeat="trip in trips.trips" position="{{trip.latitude}},{{trip.longitude}}" animation="DROP" title="{{trip.name}}" on-click="show()"></marker> -->
-        </ng-map>
-      </div>
 
     <!-- John: Angular code -->
     <!-- <header ng-controller="HeaderController as header">
@@ -144,6 +142,8 @@
         })
       });
     </script>
+  </ng-map>
+</div>
     <script src="/lib/js/jquery.timelinr-0.9.54.js"></script>
   </body>
 </html>

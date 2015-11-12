@@ -13,7 +13,11 @@
         <%= flash[:message] %>
       </div>
     <% end %>
+
+    <!-- <div ng-controller="map as MapsController"> -->
     <%= yield %>
+    <!-- </div> -->
+
     <%= javascript_include_tag 'angular', 'data-turbolinks-track' => true %>
     <a class="create-trip" href="<%= new_trip_path %>">
       Create New Trip
