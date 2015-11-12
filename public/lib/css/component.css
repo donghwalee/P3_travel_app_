@@ -212,7 +212,6 @@ p.head_text {
 
 .menu-button {
 	position: absolute;
-	z-index: 1000;
 	top: 30px;
 	right: 30px;
 	width: 30px;
