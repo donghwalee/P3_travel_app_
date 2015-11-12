@@ -41,6 +41,7 @@ app.controller('mapController', ['$scope', function ($scope) {
       this.setAnimation(google.maps.Animation.BOUNCE);
       console.log(this);
       var dest = this.position
+      console.log(dest);
       $scope.map.panTo({lat: dest.lat() + 3,
                         lng: dest.lat()})
     }
