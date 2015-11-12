@@ -19,11 +19,18 @@
                 zoom=3
                 default-style="false"
                 zoom-control="true"
+<<<<<<< HEAD
                 zoom-to-include-markers="true"
                 zoom-control-options="{position: 'LEFT_BOTTOM'}"
                 map-type-control-options="{position: 'LEFT_BOTTOM'}"
                 styles=[{"featureType":"all","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"color":"#ed5929"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#c4c4c4"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#ed5929"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21},{"visibility":"on"}]},{"featureType":"poi.business","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ed5929"},{"lightness":"0"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.text.stroke","stylers":[{"color":"#ed5929"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#575757"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.text.stroke","stylers":[{"color":"#2c2c2c"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#999999"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]
                 >
+=======
+                zoom-control-options="{position: 'LEFT_CENTER'}"
+                map-type-control="FALSE"
+                styles=[{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]>
+              <marker position="-40, 70" on-click="show()"></marker>
+>>>>>>> 5c4e94275d33faeb564f4c6c886e7786d77f57c8
                 <!-- zoom-to-include-markers="true"
                 minZoom=2  -->
           <marker ng-repeat="trip in trips" position="{{trip.latitude}},{{trip.longitude}}" animation="DROP" title="{{trip.name}}" on-click="show()"></marker>
@@ -34,46 +41,52 @@
     </header> -->
     <div id="modal">
         <main ng-controller="TripsController as trips" id="temp-overflow">
-          <!-- List of All the Users Trips -->
-          <h2>All of your trips</h2>
-          <ul>
-            <li ng-repeat="trip in trips.current_user_trips">
-              Title: {{trip.title}}
-              Destination: {{trip.destination}}
-              Description: {{trip.description}}
-              Start Date: {{trip.start_date}}
-              End Date: {{trip.end_date}}
-              Tags: {{trip.trip_type}}
-              Notes: {{trip.notes}}
-              Latitude: {{trip.latitude}}
-              Longitude: {{trip.longitude}}
-            <div ng-controller="CommentsController as commentsCtrl">
-              <h3>Comments:</h3>
-                <ul>
-                  <li ng-repeat="comment in trip.comments">
-                    Entry: {{comment.entry}}
-                    Author: {{comment.commenter}}
-                  </li>
-                </ul>
-                <form ng-submit="commentsCtrl.createComment()">
-                  <input type="text" ng-model="commentsCtrl.newCommentEntry" placeholder="entry"/>
-                  <input type="submit" value="Comment"/>
-                </form>
-              </div>
-            </li>
-          </ul>
+          <div id="card">
+            <div class="back">
+              <!-- List of All the Users Trips -->
+              <h2>All of your trips</h2>
+              <ul>
+                <li ng-repeat="trip in trips.current_user_trips">
+                  Title: {{trip.title}}
+                  Destination: {{trip.destination}}
+                  Description: {{trip.description}}
+                  Start Date: {{trip.start_date}}
+                  End Date: {{trip.end_date}}
+                  Tags: {{trip.trip_type}}
+                  Notes: {{trip.notes}}
+                  Latitude: {{trip.latitude}}
+                  Longitude: {{trip.longitude}}
+                <div ng-controller="CommentsController as commentsCtrl">
+                  <h3>Comments:</h3>
+                    <ul>
+                      <li ng-repeat="comment in trip.comments">
+                        Entry: {{comment.entry}}
+                        Author: {{comment.commenter}}
+                      </li>
+                    </ul>
+                    <form ng-submit="commentsCtrl.createComment()">
+                      <input type="text" ng-model="commentsCtrl.newCommentEntry" placeholder="entry"/>
+                      <input type="submit" value="Comment"/>
+                    </form>
+                  </div>
+                </li>
+              </ul>
+            </div>
 
-          <!-- Form to Enter Users Latest Trip -->
-          <h2>Where have you been?</h2>
-          <form ng-submit="trips.createTrip()">
-            <input type="text" ng-model="trips.newTripTitle" placeholder="Title"/>
-            <input class="search" places-auto-complete types="['geocode']" on-place-changed="placeChanged()"/>
-            <input type="text" ng-model="trips.newTripDescription" placeholder="Description"/>
-            <input type="date" ng-model="trips.newTripStartDate" placeholder="Start Date"/>
-            <input type="date" ng-model="trips.newTripEndDate" placeholder="End Date"/>
-            <input type="text" ng-model="trips.newTripNotes" placeholder="Notes"/>
-            <input type="submit" value="Submit your Trip"/>
-          </form>
+            <div class="front">
+              <!-- Form to Enter Users Latest Trip -->
+              <h2>Where have you been?</h2>
+              <form ng-submit="trips.createTrip()">
+                <input type="text" ng-model="trips.newTripTitle" placeholder="Title"/>
+                <input class="search" places-auto-complete types="['geocode']" on-place-changed="placeChanged()"/>
+                <input type="text" ng-model="trips.newTripDescription" placeholder="Description"/>
+                <input type="date" ng-model="trips.newTripStartDate" placeholder="Start Date"/>
+                <input type="date" ng-model="trips.newTripEndDate" placeholder="End Date"/>
+                <input type="text" ng-model="trips.newTripNotes" placeholder="Notes"/>
+                <input type="submit" value="Submit your Trip"/>
+              </form>
+            </div>
+          </div>
         </main>
     </div>
     <div class="timeline">
@@ -134,6 +147,14 @@
 
       </div>
     </div>
+    <script src="/lib/js/jquery.js"></script>
+    <script src="/lib/js/jquery.flip.js"></script>
+    <script>
+    $(function($) {
+      $("#card").flip();
+    });
+    </script>
+
     <script>
       $(function(){
         $().timelinr({
