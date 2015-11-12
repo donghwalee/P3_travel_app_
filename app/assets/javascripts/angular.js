@@ -47,8 +47,9 @@ app.controller('mapController', ['$scope', function ($scope) {
                         lng: dest.lat()})
     }
   }
-<<<<<<< HEAD
-  console.log($scope);
+  $scope.$on("TripsReceived", function(event, data){
+    $scope.trips = data;
+  });
 }]);
 
 
@@ -62,6 +63,7 @@ app.controller('mapController', ['$scope', function ($scope) {
       console.log(controller.current_user);
     });
   }]);
+
   //Trips Controller
   app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
     //get authenticity_token from DOM (rails injects it on load)
@@ -75,59 +77,18 @@ app.controller('mapController', ['$scope', function ($scope) {
     this.getTrips = function() {
       // get trips for current User
       $http.get('/trips').success(function(data) {
+        $scope.$emit('TripsReceived', data)
         //add trips to controller, data comes back with user
         controller.current_user_trips = data.trips;
-        console.log($scope.$child);
-        console.log(controller.current_user_trips);
-      })
-    }
-    this.getTrips();
-=======
-  // console.log("Map scope");
-  $scope.$on("TripsReceived", function(event, data){
-    $scope.trips = data;
-  });
-// console.log($scope);
-// console.log($scope.$child);
-  // $scope.userTrips = $scope.$child.trips.trips
-})
+        controller.trips = [];
 
-//Header Controller
-app.controller('HeaderController', ['$http', function($http) {
-  var controller = this;
-  //Get current user from route
-  $http.get('/session').success(function(data) {
-    //setting curent user to data.current user because data comes nested in current user
-    controller.current_user = data.current_user;
-  });
-}]);
- var tripLocations = []
-//Trips Controller
-app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
-  //get authenticity_token from DOM (rails injects it on load)
-  var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  var controller = this;
-  //trip types for select in html
-  this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
-  this.newTripTripType = "Other";
-
-  this.getTrips = function() {
-    // get trips for current User
-    $http.get('/trips').success(function(data) {
-      $scope.$emit('TripsReceived', data)
-      //add trips to controller, data comes back with user
-      controller.current_user_trips = data.trips;
-      controller.trips = [];
-
-      angular.forEach(data.trips, function(value) {
+        angular.forEach(data.trips, function(value) {
         controller.trips.push({lat: value.latitude, lng: value.longitude})
-      });
-      // console.log("trip scope");
-      // console.log($scope);
-    });
-  }
+      })
+
+  });
+}
   this.getTrips();
->>>>>>> dev
 
     // create a Trip
     this.createTrip = function() {
@@ -169,27 +130,6 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
     }
   }]);
 
-
-<<<<<<< HEAD
-  app.controller('CommentsController', ['$http', '$scope', function($http, $scope) {
-    //get authenticity_token from DOM (rails injects it on load)
-    var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    //create a comment
-    this.createComment = function() {
-      $http.post('/trips/'+$scope.$parent.trip.id+'/comments', {
-        //include authenticity_token
-        authenticity_token: authenticity_token,
-        comment: {
-          // trip_id: trip_id,
-          entry: this.newCommentEntry
-        }
-      }).success(function(data) {
-        $scope.$parent.trips.getTrips();
-      });
-    }
-  }]);
-=======
-
 app.controller('CommentsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -207,4 +147,3 @@ app.controller('CommentsController', ['$http', '$scope', function($http, $scope)
     });
   }
 }]);
->>>>>>> dev
