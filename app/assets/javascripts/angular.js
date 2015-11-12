@@ -44,7 +44,10 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   var controller = this;
-
+  $scope.$on('placeChangedFunctionSent', function(data, args) {
+    console.log(data);
+    console.log(args);
+  })
   //trip types for select in html
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";

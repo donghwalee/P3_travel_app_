@@ -48,7 +48,7 @@ jQuery.fn.timelinr = function(options){
 		var widthDate = $(settings.datesDiv+' li').width();
 		var heightDate = $(settings.datesDiv+' li').height();
 		// set positions!
-		if(settings.orientation == 'horizontal') {	
+		if(settings.orientation == 'horizontal') {
 			$(settings.issuesDiv).width(widthIssue*howManyIssues);
 			$(settings.datesDiv).width(widthDate*howManyDates).css('marginLeft',widthContainer/2-widthDate/2);
 			var defaultPositionDates = parseInt($(settings.datesDiv).css('marginLeft').substring(0,$(settings.datesDiv).css('marginLeft').indexOf('px')));
@@ -57,7 +57,7 @@ jQuery.fn.timelinr = function(options){
 			$(settings.datesDiv).height(heightDate*howManyDates).css('marginTop',heightContainer/2-heightDate/2);
 			var defaultPositionDates = parseInt($(settings.datesDiv).css('marginTop').substring(0,$(settings.datesDiv).css('marginTop').indexOf('px')));
 		}
-		
+
 		$(settings.datesDiv+' a').click(function(event){
 			event.preventDefault();
 			// first vars
@@ -77,7 +77,7 @@ jQuery.fn.timelinr = function(options){
 				if($(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.prevButton).fadeOut('fast');
 				 	$(settings.nextButton).fadeIn('fast');
-				} 
+				}
 				else if($(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.nextButton).fadeOut('fast');
 					$(settings.prevButton).fadeIn('fast');
@@ -86,14 +86,14 @@ jQuery.fn.timelinr = function(options){
 				if( $(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.nextButton).fadeIn('fast');
 					$(settings.prevButton).fadeOut('fast');
-				} 
+				}
 				else if( $(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.prevButton).fadeIn('fast');
 					$(settings.nextButton).fadeOut('fast');
 				}
 				else {
 					$(settings.nextButton+','+settings.prevButton).fadeIn('slow');
-				}	
+				}
 			}
 			// now moving the dates
 			$(settings.datesDiv+' a').removeClass(settings.datesSelectedClass);
@@ -145,7 +145,7 @@ jQuery.fn.timelinr = function(options){
 				if($(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.prevButton).fadeOut('fast');
 				 	$(settings.nextButton).fadeIn('fast');
-				} 
+				}
 				else if($(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.nextButton).fadeOut('fast');
 					$(settings.prevButton).fadeIn('fast');
@@ -153,13 +153,13 @@ jQuery.fn.timelinr = function(options){
 			} else {
 				if( $(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.prevButton).fadeOut('fast');
-				} 
+				}
 				else if( $(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.nextButton).fadeOut('fast');
 				}
 				else {
 					$(settings.nextButton+','+settings.prevButton).fadeIn('slow');
-				}	
+				}
 			}
 		});
 
@@ -203,7 +203,7 @@ jQuery.fn.timelinr = function(options){
 				if($(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.prevButton).fadeOut('fast');
 				 	$(settings.nextButton).fadeIn('fast');
-				} 
+				}
 				else if($(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass)) {
 					$(settings.nextButton).fadeOut('fast');
 					$(settings.prevButton).fadeIn('fast');
@@ -211,32 +211,32 @@ jQuery.fn.timelinr = function(options){
 			} else {
 				if( $(settings.issuesDiv+' li:first-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.prevButton).fadeOut('fast');
-				} 
+				}
 				else if( $(settings.issuesDiv+' li:last-child').hasClass(settings.issuesSelectedClass) ) {
 					$(settings.nextButton).fadeOut('fast');
 				}
 				else {
 					$(settings.nextButton+','+settings.prevButton).fadeIn('slow');
-				}	
+				}
 			}
 		});
 		// keyboard navigation, added since 0.9.1
 		if(settings.arrowKeys=='true') {
 			if(settings.orientation=='horizontal') {
 				$(document).keydown(function(event){
-					if (event.keyCode == 39) { 
+					if (event.keyCode == 39) {
 				       $(settings.nextButton).click();
 				    }
-					if (event.keyCode == 37) { 
+					if (event.keyCode == 37) {
 				       $(settings.prevButton).click();
 				    }
 				});
 			} else if(settings.orientation=='vertical') {
 				$(document).keydown(function(event){
-					if (event.keyCode == 40) { 
+					if (event.keyCode == 40) {
 				       $(settings.nextButton).click();
 				    }
-					if (event.keyCode == 38) { 
+					if (event.keyCode == 38) {
 				       $(settings.prevButton).click();
 				    }
 				});
@@ -245,7 +245,7 @@ jQuery.fn.timelinr = function(options){
 		// default position startAt, added since 0.9.3
 		$(settings.datesDiv+' li').eq(settings.startAt-1).find('a').trigger('click');
 		// autoPlay, added since 0.9.4
-		if(settings.autoPlay == 'true') { 
+		if(settings.autoPlay == 'true') {
 			setInterval("autoPlay()", settings.autoPlayPause);
 		}
 	});

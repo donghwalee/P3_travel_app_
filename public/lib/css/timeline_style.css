@@ -1,25 +1,25 @@
 * {
-	margin: 0;
-	padding: 0;
+	margin: 0 ;
+	padding: 0 ;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
+	font-family: 'Roboto', sans-serif ;
+	font-size: 14px ;
 }
 
-#dates a {
-	color: #000;
-	text-decoration: none;
-	-webkit-transition: 0.5s;
-	-moz-transition: 0.5s;
-	-o-transition: 0.5s;
-	-ms-transition: 0.5s;
-	transition: 0.5s;
+#dates a.ng-binding {
+	color: #000 ;
+	text-decoration: none ;
+	-webkit-transition: 0.5s ;
+	-moz-transition: 0.5s ;
+	-o-transition: 0.5s ;
+	-ms-transition: 0.5s ;
+	transition: 0.5s ;
 }
-	#dates a:hover,
+	#dates a.ng-binding:hover,
 	a.selected {
-		color: #ffc04c !important;
+		color: salmon !important;
 	}
 
 h1,h2,h4,h5,h6 {
@@ -61,36 +61,40 @@ h1,h2,h4,h5,h6 {
 	}
 
 		#dates {
-			width: 74.5%;
-			height: 40px;
-			overflow: hidden;
+			width: 60%;
+			height: 40px ;
+			overflow: hidden ;
 			/*border: red solid 1px;*/
 		}
-			#dates li {
-				list-style: none;
-				float: left;
+		a.ng-binding {
+			background-color: pink;
+		}
+			#dates li.ng-scope {
+				list-style: none ;
+				float: left ;
 				width: 100px;
-				height: 40px;
-				font-size: 1em;
-				text-align: center;
-				background: url('/lib/images/biggerdot_new.png') center bottom no-repeat;
+				height: 40px ;
+				font-size: 1em ;
+				text-align: center ;
+				background: url('/lib/images/biggerdot_new.png') center bottom no-repeat ;
 			}
-				#dates a {
-					line-height: 1.5em;
-					padding-bottom: 0px;
+				#dates a.ng-binding {
+					line-height: 1.5em ;
+					padding-bottom: 0px ;
 				}
 				#dates .selected {
-			        font-size: 1.5em;
+			        font-size: 1.5em ;
 							padding-bottom: 0px;
 				}
 
 		#issues {
-			width: 800px;
+			width: 800px ;
 			height: 35px;
 			overflow: hidden;
+			/*border: blue solid 1px;*/
 		}
-			#issues li {
-				width: 800px;
+			#issues li.ng-scope {
+				width: 800px ;
 				height: 35px;
 				list-style: none;
 				float: left;
@@ -102,7 +106,7 @@ h1,h2,h4,h5,h6 {
 				    -ms-transform: scale(1.1,1.1);
 				    transform: scale(1.1,1.1);
 				}
-				#issues li img {
+				#issues li.ng-scope img {
 					float: left;
 					margin: 10px 30px 10px 50px;
 					background: transparent;
@@ -120,13 +124,12 @@ h1,h2,h4,h5,h6 {
 				    -ms-transform: scale(0.7,0.7);
 				    transform: scale(0.7,0.7);
 				}
-				#issues li h1 {
+				#issues li h1.ng-binding {
 					color: black;
 					font-size: 1em;
 					margin: 7px 0;
-					text-align: center;
 				}
-				#issues li p {
+				#issues li.ng-scope p {
 					font-size: 14px;
 					margin-right: 70px;
 					font-weight: normal;
@@ -136,8 +139,9 @@ h1,h2,h4,h5,h6 {
 		#next,
 		#prev {
 			position: absolute;
-			font-size: 70px;
 			top: 0;
+			font-size: 70px;
+			top: 0px;
 			width: 22px;
 			height: 75px;
 			background-position: 0 0;

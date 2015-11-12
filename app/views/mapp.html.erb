@@ -25,6 +25,15 @@
                 map-type-control="FALSE"
                 styles=[{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]>
               <marker position="-40, 70" on-click="show()"></marker>
+                <!-- zoom-to-include-markers="true"
+                minZoom=2  -->
+          <!-- <marker ng-repeat="trip in trips.trips" position="{{trip.latitude}},{{trip.longitude}}" animation="DROP" title="{{trip.name}}" on-click="show()"></marker> -->
+
+
+    <!-- John: Angular code -->
+    <!-- <header ng-controller="HeaderController as header">
+    <h1>Welcome, {{header.current_user.username}}!</h1>
+    </header> -->
 
     <div id="modal">
       <main ng-controller="TripsController as trips" id="temp-overflow">
@@ -107,7 +116,7 @@
 
       </div>
     </div>
-  <!-- </main> -->
+  </main>
 
     <script src="/lib/js/jquery.js"></script>
     <script src="/lib/js/jquery.flip.js"></script>

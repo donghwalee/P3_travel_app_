@@ -176,6 +176,7 @@
           //unstable and the initial flip returned. The reason for this is unknown but we
           //will temporarily use a short delay of 20 to mitigate this issue.
           }, 20);
+
           if (settings.trigger.toLowerCase() == "submit") {
             $dom.on($.fn.tap ? "tap" : "submit", function(event) {
               if (!event) {event = window.event;}
