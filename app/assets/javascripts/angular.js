@@ -20,13 +20,14 @@ app.controller('mapController', ['$scope', function ($scope) {
       this.setAnimation(google.maps.Animation.BOUNCE);
       // console.log(this);
       var dest = this.position
-      console.log(dest);
-      $scope.map.panTo({lat: dest.lat() + 3,
-                        lng: dest.lat()})
+      console.log(this.position);
+      $scope.map.panTo({lat: dest.lat(), lng: dest.lng() + 3 })
+     $scope.map.setZoom(4)
     }
   }
-  $scope.$on("TripsReceived", function(event, data){
-    $scope.trips = data;
+  $scope.$on("TripsReceived", function(event, data) {
+    $scope.trips = data.trips;
+    console.log($scope.trips);
   });
 }]);
 
@@ -35,10 +36,6 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   //get authenticity_token from DOM (rails injects it on load)
   var authenticity_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   var controller = this;
-  $scope.$on('placeChangedFunctionSent', function(data, args) {
-    console.log(data);
-    console.log(args);
-  })
   //trip types for select in html
   this.TRIPTYPE = ['Summer', 'Winter', 'Family', 'Honeymoon', 'Other'];
   this.newTripTripType = "Other";
@@ -49,16 +46,12 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
     new google.maps.Marker({
         map: $scope.map,
         position: dest,
-        animation: "DROP"
       }
     );
     destLat = $scope.place.geometry.location.lat();
     destLng = $scope.place.geometry.location.lng();
     destName = $scope.place.name;
-    console.log(destLat);
-    console.log(destLng);
-    console.log($scope.place.name);
-    // console.log($scope.markers);
+
     locations.push({lat: dest.lat(), lng: dest.lng()})
 
     $scope.map.panTo({lat: dest.lat(), lng: (dest.lng() + 3)})
@@ -73,6 +66,7 @@ app.controller('TripsController', ['$http', '$scope', function($http, $scope) {
   this.getTrips = function() {
     // get trips for current User
     $http.get('/trips').success(function(data) {
+      $scope.$emit('TripsReceived', data)
       //add trips to controller, data comes back with user
       controller.username = data.username;
       console.log(data);
