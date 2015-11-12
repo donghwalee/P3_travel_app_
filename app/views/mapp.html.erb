@@ -34,15 +34,11 @@
               </form>
               <ul>
                 <li ng-repeat="trip in trips.current_user_trips">
-                  Title: {{trip.title}}
-                  Destination: {{trip.destination}}
-                  Description: {{trip.description}}
-                  Start Date: {{trip.start_date}}
-                  End Date: {{trip.end_date}}
-                  Tags: {{trip.trip_type}}
-                  Notes: {{trip.notes}}
-                  Latitude: {{trip.latitude}}
-                  Longitude: {{trip.longitude}}
+                  Title: {{trip.title}} <br />
+                  Destination: {{trip.destination}} <br />
+                  Description: {{trip.description}} <br />
+                  Dates: From {{trip.start_date}} to {{trip.end_date}} <br />
+                  Notes: {{trip.notes}} <br />
                   <% if #{{trip.user.username}} === #{{trips.current_user.username}} %>
                   <form ng-submit="trips.deleteTrip(trip)">
                     <input type="submit" value="Delete Trip">
