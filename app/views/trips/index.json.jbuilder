@@ -13,8 +13,6 @@ json.trips(@trips) do |trip|
   json.latitude trip.latitude
   json.longitude trip.longitude
 
-  json.user trip.user
-
   json.comments(trip.comments) do |comment|
 
     # include comment fields
