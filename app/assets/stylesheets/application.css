@@ -35,7 +35,7 @@
    top: 50%;
    right: 0;
    transform: translateY(-50%);
-   overflow-y: hidden;
+   overflow-y: scroll;
  }
 
  #modal input {

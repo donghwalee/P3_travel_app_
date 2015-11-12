@@ -6,6 +6,7 @@
 body {
 	font-family: 'Roboto', sans-serif ;
 	font-size: 14px ;
+	text-align: center;
 }
 
 #dates a.ng-binding {
@@ -19,25 +20,8 @@ body {
 }
 	#dates a.ng-binding:hover,
 	a.selected {
-		color: salmon !important;
+		color: #ffc04c !important;
 	}
-
-h1,h2,h4,h5,h6 {
-	text-align: center ;
-	color: darkgray ;
-	/*text-shadow: #000 1px 1px 2px;*/
-	margin-bottom: 5px ;
-}
-	h1.ng-binding {
-		font-size: 18px ;
-	}
-	h2 {
-		font-size: 14px ;
-	}
-.sociales {
-	text-align: center ;
-	margin-bottom: 20px ;
-}
 
 .timeline {
 	bottom: 0;

@@ -29,6 +29,9 @@
             <div class="back">
               <!-- List of All the Users Trips -->
               <h2>All of your trips</h2>
+              <form>
+                <input type="submit" value="Back to Create Trip"/>
+              </form>
               <ul>
                 <li ng-repeat="trip in trips.current_user_trips">
                   Title: {{trip.title}}
@@ -44,13 +47,7 @@
                   <form ng-submit="trips.deleteTrip(trip)">
                     <input type="submit" value="Delete Trip">
                   </form>
-                  <br/>
                   <form ng-submit="trips.editTrip(trip)">
-                    <input type="text" ng-model="trips.editTripTitle" placeholder="Title" value="{{trip.title}}"/>
-                    <input type="text" ng-model="trips.editTripDescription" placeholder="Description" value="{{trip.description}}"/>
-                    <input type="date" ng-model="trips.editTripStartDate" placeholder="Start Date"/>
-                    <input type="date" ng-model="trips.editTripEndDate" placeholder="End Date"/>
-                    <input type="text" ng-model="trips.editTripNotes" placeholder="Notes" value="{{trip.notes}}"/>
                     <input type="submit" value="Edit your Trip"/>
                   </form>
                   <% end %>
@@ -70,8 +67,7 @@
                 </li>
               </ul>
             </div>
-​
-            <div class="front">
+            <div class="front" style="overview:hidden">
               <!-- Form to Enter Users Latest Trip -->
               <h2>Where have you been?</h2>
               <form ng-submit="trips.createTrip()">
@@ -82,6 +78,9 @@
                 <input type="date" ng-model="trips.newTripEndDate" placeholder="End Date"/>
                 <input type="text" ng-model="trips.newTripNotes" placeholder="Notes"/>
                 <input type="submit" value="Submit your Trip"/>
+              </form>
+              <form>
+                <input type="submit" value="View Your Trips"/>
               </form>
             </div>
           </div>
