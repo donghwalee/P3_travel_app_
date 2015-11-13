@@ -23,7 +23,7 @@
  #modal, .app-header {
    background-color: rgba(255, 255, 255, 1);
    position: absolute;
-      transition: 1s;
+   transition: 1s;
  }
 
  #modal {
@@ -34,13 +34,19 @@
    right: 0;
    transform: translateY(-50%);
    overflow: scroll;
+   text-align: left;
+ }
+
+ #modal h2 {
+   margin: 20px 0px 20px 0;
+   text-align: center;
  }
 
  #modal input {
    width: 90%;
    height: 30px;
    margin-left: 6.5%;
-   margin-bottom: 20px;
+   margin-bottom: 15px;
    background-color: #fff;
    color: #ffc04c;
    border: 1px solid #ffc04c;
